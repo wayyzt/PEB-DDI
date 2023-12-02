@@ -89,7 +89,7 @@ class InterGraphAttention(nn.Module):
     def __init__(self, input_dim,dp,head,edge,head_out_feats):
         super().__init__()
         self.input_dim = input_dim
-        self.inter = GATConv((input_dim,input_dim),head_out_feats//2,head,dropout=dp)
+        self.inter = GATConv((input_dim,input_dim),head_out_feats//2,head,dropout=dp,add_self_loops=False)
     
     def forward(self,h_data,t_data,b_graph):
         edge_index = b_graph.edge_index
